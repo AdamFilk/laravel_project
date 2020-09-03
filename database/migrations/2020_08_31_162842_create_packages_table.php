@@ -16,6 +16,8 @@ class CreatePackagesTable extends Migration
         Schema::create('packages', function (Blueprint $table) {
             $table->id();
             $table->string('codeno')->nullable();
+            $table->foreignId('user_id')->references('id')->on('users')
+            ->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

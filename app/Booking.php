@@ -9,11 +9,11 @@ class Booking extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-    	'customerid'
+    	'userid'
     ];
 
-     public function customers()
+     public function users()
     {
-    	return $this->belongsTo('App\Customer');
+    	return $this->belongsTo('App\User');
     }
 }

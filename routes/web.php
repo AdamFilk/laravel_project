@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'FrontendController@index')->name('index');
-
-Route::group(['prefix'=> 'backside', 'as' => 'backside.'],function(){
+Auth::routes();
+Route::group(['middleware'=>'role:admin','prefix'=> 'backside', 'as' => 'backside.'],function(){
 	Route::resource('/package','PackageController');
 	Route::resource('/location','LocationController');
 	Route::resource('/hotel','HotelController');
@@ -23,6 +23,7 @@ Route::group(['prefix'=> 'backside', 'as' => 'backside.'],function(){
 	Route::resource('/restaurant','RestaurantController');
 	Route::resource('/booking','BookingController');
 	Route::resource('/nature','NatureController');
+	Route::resource('/originalpackage','OriginalPackageController');
 	Route::resource('/blog','BlogController');
 });
 Auth::routes();

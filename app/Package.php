@@ -9,18 +9,18 @@ class Package extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-    	'codeno'
+    	'codeno','user_id'
     ];
 
     
 
-    public function customers()
+    public function user()
     {
-    	return $this->hasMany('App\Customer');
+    	return $this->belongsTo('App\User');
     }
 
      public function locations(){
-    	return $this->belongsToMany('App\Location', 'packagedetails','package_id', 'location_id')
+    	return $this->belongsToMany('App\Location', 'packagedetails','packageid', 'location_id')
     		/*->withPivot('qty')*/
     		->withTimestamps();;
     }

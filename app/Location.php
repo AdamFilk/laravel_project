@@ -32,6 +32,10 @@ class Location extends Model
     {
         return $this->belongsTo('App\Nature','natureid');
     }
+    public function originalpackage()
+    {
+        return $this->hasMany('App\OriginalPackage');
+    }
 
     
 

@@ -15,7 +15,7 @@ class CreateBookingsTable extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customerid')->references('id')->on('customers')
+            $table->foreignId('customerid')->references('id')->on('users')
             ->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();

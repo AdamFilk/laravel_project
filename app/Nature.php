@@ -14,6 +14,6 @@ class Nature extends Model
 
      public function location()
     {
-        return $this->hasMany('App\Location','locationid');
+        return $this->hasMany('App\Location');
     }
 }
