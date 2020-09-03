@@ -9,11 +9,11 @@ class Restaurant extends Model
 {
      use SoftDeletes;
      protected $fillable = [
-    	'name','price','photo'
+    	'name','price','photo','locationid'
     ];
 
-      public function locations()
+     public function location()
     {
-    	return $this->hasMany('App\Location');
+        return $this->belongsTo('App\Location','locationid');
     }
 }

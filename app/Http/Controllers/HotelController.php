@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use\App\Hotel;
 
+use\App\Location;
+
 class HotelController extends Controller
 {
     /**
@@ -26,7 +28,9 @@ class HotelController extends Controller
      */
     public function create()
     {
-        return view('backend.hotel.new');
+        
+        $locations = Location::all();
+        return view('backend.hotel.new',compact('locations'));
     }
 
     /**
@@ -48,6 +52,8 @@ class HotelController extends Controller
             $name=$request->name;
             $price=$request->price;
             $photo= $request->photo;
+            $location = $request->locationid;
+
 
             //fileupload
             $imageName= time().'.'.$photo->extension();
@@ -59,9 +65,10 @@ class HotelController extends Controller
             $hotel->name =$name;
             $hotel->price =$price;
             $hotel->photo = $filepath;
+            $hotel->locationid = $location;
             $hotel->save();
 
-            return redirect()->route('backside.hotel.index')->with("successMsg",'New Category has been added');
+            return redirect()->route('backside.hotel.index')->with("successMsg",'New Hotel has been added');
         }
         else{
             return redirect::back()->withErrors($validator);
@@ -90,7 +97,8 @@ class HotelController extends Controller
     public function edit($id)
     {
         $hotel=Hotel::find($id);
-        return view('backend.hotel.edit',compact('hotel'));
+        $locations = Location::all();
+        return view('backend.hotel.edit',compact('hotel','locations'));
     }
 
     /**
@@ -115,6 +123,8 @@ class HotelController extends Controller
             $price=$request->price;
             $photo= $request->photo;
             $oldPhoto=$request->oldPhoto;
+            $location = $request->locationid;
+
 
             //fileupload
             if($request->hasFile('photo')){
@@ -133,6 +143,8 @@ class HotelController extends Controller
             $hotel->name =$name;
             $hotel->price =$price;
             $hotel->photo = $filepath;
+            $hotel->locationid = $location;
+
             $hotel->save();
 
            return redirect()->route('backside.hotel.index')->with('successMsg','An Existing Hotel has been Updated');    

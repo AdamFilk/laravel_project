@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Location;
-use App\Hotel;
-use App\Restaurant;
-use App\Transportation;
+use App\Nature;
+
 
 class LocationController extends Controller
 {
@@ -18,11 +17,9 @@ class LocationController extends Controller
     public function index()
     {
         $locations = Location::all();
-        $hotels = Hotel::all();
-        $restaurants = Restaurant::all();
-        $transportations = Transportation::all();
+       
 
-        return view('backend.location.list',compact('locations','hotels','restaurants','transportations'));
+        return view('backend.location.list',compact('locations'));
     }
 
     /**
@@ -32,11 +29,10 @@ class LocationController extends Controller
      */
     public function create()
     {
-        $hotels = Hotel::all();
-        $restaurants = Restaurant::all();
-        $transportations = Transportation::all();
+        $natures=Nature::all();
+        $locations = Location::all();
 
-        return view('backend.location.new',compact('hotels','restaurants','transportations'));
+        return view('backend.location.new',compact('locations','natures'));
     }
 
     /**
@@ -49,16 +45,15 @@ class LocationController extends Controller
     {
          $validator = $request->validate([
             'name'  => ['required', 'string', 'max:255', 'unique:locations'],
+            'natureid'  => ['required', 'string', 'max:255'],
         ]);
 
         if ($validator) {
             $name = $request->name;
             $price = $request->price;
             $photo = $request->photo;
-            $nature = $request->nature;
-            $hotelid = $request->hotelid;
-            $restaurantid = $request->restaurantid;
-            $transportationid = $request->transportationid;
+            $natureid = $request->natureid;
+            
 
 
             // FILE UPLOAD
@@ -75,10 +70,7 @@ class LocationController extends Controller
             $location->name = $name;
             $location->price = $price;
             $location->photo = $filepath;
-            $location->nature = $nature;
-            $location->hotelid = $hotelid;
-            $location->restaurantid = $restaurantid;
-            $location->transportationid = $transportationid;
+            $location->natureid = $natureid;
             $location->save();
 
             return redirect()->route('backside.location.index')->with("successMsg", "New Item is ADDED in your data");
@@ -108,13 +100,12 @@ class LocationController extends Controller
      */
     public function edit($id)
     {
-        $hotels = Hotel::all();
-        $restaurants = Restaurant::all();
-        $transportations = Transportation::all();
+        $natures=Nature::all();
         $location = Location::find($id);
+       
         /*dd($category);*/
 
-        return view('backend.location.edit',compact('location','hotels','restaurants','transportations'));
+        return view('backend.location.edit',compact('location','natures'));
     }
 
     /**
@@ -131,10 +122,8 @@ class LocationController extends Controller
             $price = $request->price;
             $newphoto = $request->photo;
             $oldphoto = $request->oldphoto;
-            $nature = $request->nature;
-            $hotelid = $request->hotelid;
-            $restaurantid = $request->restaurantid;
-            $transportationid = $request->transportationid;
+            $natureid = $request->natureid;
+           
         
         if ($request->hasFile('photo')) {
            
@@ -164,10 +153,8 @@ class LocationController extends Controller
         $location ->name = $name;
         $location ->price = $price;
         $location->photo = $filepath;
-        $location->nature = $nature;
-        $location->hotelid = $hotelid;
-        $location->restaurantid = $restaurantid;
-        $location->transportationid = $transportationid;
+        $location->natureid = $natureid;
+       
         $location-> save();
 
         return redirect()->route('backside.location.index')->with('successMsg', 'Existing Location is UPDATED in your data');

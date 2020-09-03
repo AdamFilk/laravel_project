@@ -9,23 +9,28 @@ class Location extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'name','price','photo','nature','hotelid','transportationid','restaurantid'
+        'name','price','photo','nature'
     ];
 
+     
 
-    public function hotel()
+    public function hotels()
     {
-        return $this->belongsTo('App\Hotel','hotelid');
+        return $this->hasMany('App\Hotel');
     }
 
-    public function restaurant()
+    public function restaurants()
     {
-        return $this->belongsTo('App\Restaurant','restaurantid');
+        return $this->hasMany('App\Restaurant');
     }
 
-    public function transportation()
+    public function transportations()
     {
-        return $this->belongsTo('App\Transportation','transportationid');
+        return $this->hasMany('App\Transportation');
+    }
+    public function nature()
+    {
+        return $this->belongsTo('App\Nature','natureid');
     }
 
     

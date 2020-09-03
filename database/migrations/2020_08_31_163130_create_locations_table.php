@@ -18,13 +18,8 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->string('price');
             $table->longText('photo');
-            $table->string('nature');
-            $table->foreignId('hotelid')->references('id')->on('hotels')
-            ->onDelete('cascade');
-             $table->foreignId('restaurantid')->references('id')->on('restaurants')
-            ->onDelete('cascade');
-             $table->foreignId('transportationid')->references('id')->on('transportations')
-            ->onDelete('cascade');
+            $table->foreignId('natureid')->references('id')->on('natures')
+            ->onDelete('cascade');            
             $table->softDeletes();
             $table->timestamps();
         });

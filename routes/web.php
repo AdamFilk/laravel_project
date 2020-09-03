@@ -22,6 +22,7 @@ Route::group(['prefix'=> 'backside', 'as' => 'backside.'],function(){
 	Route::resource('/transportation','TransportationController');
 	Route::resource('/restaurant','RestaurantController');
 	Route::resource('/booking','BookingController');
+	Route::resource('/nature','NatureController');
 	Route::resource('/blog','BlogController');
 });
 Auth::routes();

@@ -5,15 +5,15 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Hotel extends Model
+class Nature extends Model
 {
     use SoftDeletes;
      protected $fillable = [
-    	'name','price','photo','locationid'
+    	'name'
     ];
 
      public function location()
     {
-        return $this->belongsTo('App\Location','locationid');
+        return $this->hasMany('App\Location','locationid');
     }
 }

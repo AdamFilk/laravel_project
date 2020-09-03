@@ -6,9 +6,7 @@
   $price = $location->price;
   $photo = $location->photo;
   $nature = $location->nature;
-  $hotelid = $location->hotel->name;
-  $restaurantid = $location->restaurant->name;
-  $transportationid = $location->transportation->name;
+  
 
 
   @endphp
@@ -102,80 +100,34 @@
 
           </div>
         </div>
-          <div class="row">      
-             <div style="padding-left: 40px;">
-              <label for="nature_id">Nature:</label>
-              <input name="nature" class="form-control" type="text" style="display: inline-block;" id="nature_id" name="nature" value="{{$nature}}">  
-              <div class="text-danger form-control-feedback">
+          <div class="col-sm-10">
+          <select class="form-control" name="natureid">
 
-                {{$errors->first('nature')}}
+            <option>
+              Choose One
+            </option>
+
+            @foreach($natures as $nature)
+            <option value="{{$nature->id}}" 
+              @if($location->natureid == $nature->id)
+               {{'selected'}} 
+               @endif >
+              {{$nature->name}}
+            </option>
+            @endforeach
+
+          </select>
+          <div class="text-danger form-control-feedback">
+
+            {{$errors->first('natureid')}}
 
 
-              </div>  
-            </div>            
           </div>
-          <div class="row">      
-             <div style="padding-left: 40px;">
-              <label for="hotel_id">Hotel:</label>
-              <select class="form-control" name="hotelid">
+        </div>
 
-                
+       
 
-                @foreach($hotels as $hotel)
-                <option value="{{ $hotel->id }}" @if($hotelid == $hotel->id) {{'selected'}} @endif> {{ $hotel->name }} </option>
-                @endforeach
-
-              </select>
-              <div class="text-danger form-control-feedback">
-                
-                {{$errors->first('hotel')}}
-
-
-              </div>   
-            </div>            
-          </div>
-
-          <div class="row">      
-             <div style="padding-left: 40px;">
-              <label for="restaurantid">Restaurant:</label>
-              <select class="form-control" name="restaurantid">
-                
-              
-
-                @foreach($restaurants as $restaurant)
-                <option value="{{ $hotel->id }}" @if($restaurantid == $restaurant->id) {{'selected'}} @endif> {{ $restaurant->name }} </option>
-                @endforeach
-
-              </select>
-              <div class="text-danger form-control-feedback">
-                
-                {{$errors->first('restaurant')}}
-
-
-              </div>   
-            </div>            
-          </div>
-
-           <div class="row">      
-             <div style="padding-left: 40px;">
-              <label for="transportation_id">Transportation:</label>
-              <select class="form-control" name="transportationid">
-                
-                
-
-                @foreach($transportations as $transportation)
-                <option value="{{ $transportation->id }}" @if($transportationid == $transportation->id) {{'selected'}} @endif> {{ $transportation->name }} </option>
-                @endforeach
-
-              </select>
-              <div class="text-danger form-control-feedback">
-                
-                {{$errors->first('transportation')}}
-
-
-              </div>   
-            </div>            
-          </div>
+         
 
           <button type="submit" class="btn-success py-2" style="border: none;">Edit</button>
           </form>

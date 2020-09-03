@@ -11,9 +11,10 @@
 <form action="{{route('backside.restaurant.update',$id)}}" method="POST" enctype="multipart/form-data">
                                   @csrf {{-- cross site request forgery --}}
                                   @method('PUT')
+        <input type="hidden" name="oldphoto" value="{{$photo}}">
         <div class="main-content" id="panel">
    
-          <input type="hidden" name="oldphoto" value="{{$photo}}">
+
     <div class="container-fluid mt--6">
       
       <div class="row" style="margin-top: 180px">
@@ -84,6 +85,33 @@
 
           </div>
         </div>
+
+        <div class="col-sm-10">
+          <select class="form-control" name="locationid">
+
+            <option>
+              Choose One
+            </option>
+
+            @foreach($locations as $location)
+            <option value="{{$location->id}}" 
+              @if($restaurant->locationid == $location->id)
+               {{'selected'}} 
+               @endif >
+              {{$location->name}}
+            </option>
+            @endforeach
+
+          </select>
+          <div class="text-danger form-control-feedback">
+
+            {{$errors->first('hotelid')}}
+
+
+          </div>
+        </div>
+
+      </div>           
           
 
           <button class="btn-success" style="border: none;">Edit</button>

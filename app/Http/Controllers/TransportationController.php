@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Transportation;
+use\App\Location;
 
 class TransportationController extends Controller
 {
@@ -25,10 +26,8 @@ class TransportationController extends Controller
      */
     public function create()
     {
-        $transportations = Transportation::all();
-        
-
-        return view('backend.transportation.new',compact('transportations'));
+       $locations = Location::all();
+        return view('backend.transportation.new',compact('locations'));
     }
 
     /**
@@ -53,6 +52,7 @@ class TransportationController extends Controller
             $name = $request->name;
             $photo = $request->photo;
             $price = $request->price;
+            $location = $request->locationid;
             
 
             
@@ -72,6 +72,7 @@ class TransportationController extends Controller
             $transportation->name = $name;
             $transportation->photo = $filepath;
             $transportation->price = $price;
+            $transportation->locationid = $location;
             
             $transportation->save();
 
@@ -103,7 +104,8 @@ class TransportationController extends Controller
         $transportation = Transportation::find($id);
         /*dd($category);*/
 
-        return view('backend.transportation.edit',compact('transportation'));
+        $locations = Location::all();
+        return view('backend.transportation.edit',compact('transportation','locations'));
     }
 
     /**
@@ -115,12 +117,14 @@ class TransportationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        {
+        
         $type = $request->type;
         $name = $request->name;
         $price = $request->price;
         $newphoto = $request->photo;
         $oldphoto = $request->oldphoto;
+        $location = $request->locationid;
+
         
         if ($request->hasFile('photo')) {
            
@@ -147,14 +151,16 @@ class TransportationController extends Controller
 
         //data_upate
         $transportation = Transportation::find($id);
+        $transportation ->type = $type;
         $transportation ->name = $name;
         $transportation ->price = $price;
         $transportation ->photo = $filepath;
+        $transportation->locationid = $location;
         $transportation-> save();
 
         return redirect()->route('backside.transportation.index')->with('successMsg', 'Existing Transportation is UPDATED in your data');
 
-    }
+    
     }
 
     /**

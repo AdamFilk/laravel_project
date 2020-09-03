@@ -60,6 +60,31 @@
             </div>  
           </div>            
         </div>
+
+        <div class="form-group row">
+            <label>Location:</label> 
+            <div class="col-sm-10">
+              <select class="form-control" name="locationid">
+
+                <option>
+                  Choose One
+                </option>
+
+                @foreach($locations as $location)
+                <option value="{{$location->id}}">{{$location->name}}
+                </option>
+                @endforeach
+
+              </select>
+              <div class="text-danger form-control-feedback">
+
+                {{$errors->first('locationid')}}
+
+
+              </div>
+            </div>
+
+          </div>
         <br>
         <div class="row">      
          <div style="padding-left: 40px;">

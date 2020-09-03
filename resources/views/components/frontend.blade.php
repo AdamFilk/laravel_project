@@ -23,19 +23,45 @@
 </head>
 <body>
 	<!-- banner slider -->
-	<div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" >
-	  <div class="carousel-inner" style="height: 100vh; ">
-	    <div class="carousel-item active img-gradient ">
-	      <img class="d-block w-100 rare-wind-gradient" src="{{asset('frontend/image/banner3.jpg')}}" alt="First slide">
-	    </div>
-	    <div class="carousel-item img-gradient">
-	      <img class="d-block w-100 rare-wind-gradient" src="{{asset('frontend/image/banner4.jpg')}}" alt="Second slide">
-	    </div>
-	    <div class="carousel-item img-gradient">
-	      <img class="d-block w-100 rare-wind-gradient" src="{{asset('frontend/image/banner5.jpg')}}" alt="Third slide">
-	    </div>
-	  </div>
-	</div>
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner img-gradient">
+    <div class="carousel-item active">
+      <img class="d-block w-100 " src="{{asset('frontend/image/banner6.jpg')}}" alt="..." style="height:100vh;">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Enjoy the beauty of Myanmar (Oo Pain Bridge)</h5>
+        <p>See the beauty of Myanmar with the Eye of the Eagle!</p>
+
+      </div>
+    </div>
+    <div class="carousel-item ">
+      <img class="d-block w-100 " src="{{asset('frontend/image/banner8.jpg')}}" alt="Second slide" style="height: 100vh">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Enjoy the beauty of Myanmar (Nga Pa Li)</h5>
+        <p>See the beauty of Myanmar with the Eye of the Eagle!</p>
+      </div>
+    </div>
+    <div class="carousel-item ">
+      <img class="d-block w-100" src="{{asset('frontend/image/banner4.jpg')}}" alt="Third slide" style="height: 100vh">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Enjoy the beauty of Myanmar (Bagan)</h5>
+        <p>See the beauty of Myanmar with the Eye of the Eagle!</p>
+      </div>
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
 	<!-- nav -->
 
 	<header>
@@ -60,7 +86,7 @@
                                     <li class="nav-item"><a class="nav-link"style="color:black" href="blog-single.html">Log Out</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item active"><a class="nav-link" href="{{'index'}}">Home</a></li> 
+                            <li class="nav-item active"><a class="nav-link" href="{{'/'}}">Home</a></li> 
                             <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{route('location')}}">Locations</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{route('booking')}}">Booking</a></li>

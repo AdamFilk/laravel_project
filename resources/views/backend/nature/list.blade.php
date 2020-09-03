@@ -1,5 +1,6 @@
 <x-backend>
 
+
     <div class="container-fluid mt--6">
       
       <div class="row" style="margin-top: 180px">
@@ -8,10 +9,10 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h3 class="mb-0">Available Restaurant</h3>
+                  <h3 class="mb-0">Available Nature</h3>
                 </div>
                 <div class="col text-right tableIcon">
-                 <a href="{{route('backside.restaurant.create')}}" class="btn btn-outline-primary" style="color: black;" >
+                 <a href="{{route('backside.nature.create')}}" class="btn btn-outline-primary" style="color: black;" >
                   <i class="icofont-plus-circle"></i>
                 </a>
                 </div>
@@ -36,38 +37,29 @@
                   <tr>
                     <th scope="col">No </th>
                     <th scope="col">Name </th>
-                    <th scope="col"> Photo </th>
-                    <th scope="col">Price</th>
-                     <th scope="col">Location</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
                    @php $i=1; @endphp
 
-                    @foreach($restaurants as $restaurant)
+                    @foreach($natures as $nature)
 
                     @php
 
-                        $id = $restaurant->id;
-                        $name = $restaurant->name;
-                        $price = $restaurant->price;
-                        $photo = $restaurant->photo;
-                        $location = $restaurant->location->name;
+                        $id = $nature->id;
+                        $name = $nature->name;
+                   
 
 
                     @endphp
                     <tr>
                     <th scope="col">{{($i++)}} </th>
                     <th scope="col">{{($name)}} </th>          
-                    <th scope="col"><img src="{{asset($photo)}}" class="img-fluid" style="width: 70px;" alt="restaurant photo"> </th>
-
-                    <th scope="col">{{($price)}}KS</th>
-                    <th scope="col">{{($location)}} </th>   
-                    <th>
-                      
-                      <a href="{{route('backside.restaurant.edit',$id)}}" class="table-icon linkIcon"><i class="icofont-settings-alt"></i></a>
-                      <form action="{{ route('backside.restaurant.destroy',$id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure?')">
+                   
+                      <th>
+                      <a href="{{route('backside.nature.edit',$id)}}" class="table-icon linkIcon"><i class="icofont-settings-alt"></i></a>
+                      <form action="{{ route('backside.nature.destroy',$id) }}" method="POST" class="d-inline-block" onsubmit="return confirm('Are you sure?')">
 
                         @csrf
                         @method('DELETE')

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Restaurant;
+use\App\Location;
+
 
 
 class RestaurantController extends Controller
@@ -26,7 +28,8 @@ class RestaurantController extends Controller
      */
     public function create()
     {
-        return view('backend.restaurant.new');
+         $locations = Location::all();
+        return view('backend.restaurant.new',compact('locations'));
     }
 
     /**
@@ -48,6 +51,7 @@ class RestaurantController extends Controller
             $name = $request->name;
             $price = $request->price;
             $photo = $request->photo;
+            $location = $request->locationid;
 
             
            //file upload
@@ -65,6 +69,7 @@ class RestaurantController extends Controller
             $restaurant->name = $name;
             $restaurant->price = $price;
             $restaurant->photo = $filepath;
+            $restaurant->locationid = $location;
             $restaurant->save();
 
             return redirect()->route('backside.restaurant.index')->with("successMsg",'is ADDED in your data');
@@ -95,7 +100,8 @@ class RestaurantController extends Controller
         $restaurant = Restaurant::find($id);
         /*dd($category);*/
 
-        return view('backend.restaurant.edit',compact('restaurant'));
+        $locations = Location::all();
+        return view('backend.restaurant.edit',compact('restaurant','locations'));
     }
 
     /**
@@ -112,6 +118,7 @@ class RestaurantController extends Controller
         $price = $request->price;
         $newphoto = $request->photo;
         $oldphoto = $request->oldphoto;
+        $location = $request->locationid;
         
         if ($request->hasFile('photo')) {
            
@@ -141,6 +148,7 @@ class RestaurantController extends Controller
         $restaurant ->name = $name;
         $restaurant ->price = $price;
         $restaurant ->photo = $filepath;
+        $restaurant->locationid = $location;
         $restaurant-> save();
 
         return redirect()->route('backside.restaurant.index')->with('successMsg', 'Existing Restaurant is UPDATED in your data');

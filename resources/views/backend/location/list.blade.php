@@ -30,9 +30,6 @@
                     <th scope="col">Price</th>
                     <th scope="col">Photo</th>
                     <th scope="col">Nature</th>
-                    <th scope="col">Hotel</th>
-                    <th scope="col">Restaurant</th>
-                    <th scope="col">Transportation</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -47,10 +44,9 @@
                         $name = $location->name;
                         $price = $location->price;
                         $photo = $location->photo;
-                        $nature = $location->nature;
-                        $hotelid = $location->hotel->name;
-                        $restaurantid = $location->restaurant->name;
-                        $transportationid = $location->transportation->name;
+                        $natureid= $location->natureid;
+                        $nature = $location->nature->name;
+                        
                        
 
                     @endphp
@@ -70,15 +66,7 @@
                     <td>
                       {{$nature}}
                     </td>
-                    <td>
-                     {{$hotelid}}
-                    </td>
-                    <td>
-                      {{$restaurantid}}
-                    </td>
-                    <td>
-                      {{$transportationid}}
-                    </td>
+                    
                    
                     <td>
                       <a href="{{route('backside.location.edit',$id)}}" class="table-icon linkIcon"><i class="icofont-settings-alt"></i></a>

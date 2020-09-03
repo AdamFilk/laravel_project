@@ -9,11 +9,11 @@ class Transportation extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-    	'type','name','price','photo'
+    	'type','name','price','photo','locationid'
     ];
 
-    public function locations()
+    public function location()
     {
-    	return $this->hasMany('App\Location');
+        return $this->belongsTo('App\Location','locationid');
     }
 }

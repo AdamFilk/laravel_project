@@ -1,7 +1,8 @@
 <x-frontend>
 	<!-- best offer -->
+  <!-- best offer -->
 
-  <div class="container" style="margin-top: -500px">
+  <div class="container mt-5">
   <h2>Best Offers!!</h2>
   <div class="row">  
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
@@ -62,7 +63,7 @@
   <!-- newest available -->
 
   <div class="container">
-  <h2>Best Offers!!</h2>
+  <h2>Lastest Offers!!</h2>
   <div class="row">  
         <div class="col-4">
               <div class="card " style="width: 18rem;">
@@ -120,7 +121,7 @@
   <!-- most liked -->
 
   <div class="container">
-  <h2>Best Offers!!</h2>
+  <h2>Most Popular</h2>
   <div class="row">  
         <div class="col-4">
               <div class="card " style="width: 18rem;">

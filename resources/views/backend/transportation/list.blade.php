@@ -26,6 +26,7 @@
                     <th scope="col">Name </th>
                     <th scope="col">Price</th>
                     <th scope="col"> Photo </th>
+                    <th scope="col"> Location</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
@@ -41,6 +42,7 @@
                         $name = $transportation->name;
                         $price = $transportation->price;
                         $photo = $transportation->photo;
+                        $location = $transportation->location->name;
 
 
 
@@ -49,7 +51,8 @@
                     <th scope="col"> {{$i++}} </th>
                      <th scope="col">{{$type}} </th>  
                     <th scope="col">{{$name}} </th> 
-                    <th scope="col">{{$price}}Ks</th>         
+                    <th scope="col">{{$price}}Ks</th> 
+                    <th scope="col">{{$location}}Ks</th>         
                     <th scope="col"><img src="{{asset($photo)}}" class="img-fluid" style="width: 70px;" alt="transportation photo"> </th> 
                     
                     <th>

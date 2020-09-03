@@ -26,30 +26,27 @@
                     <th>No</th>
                     <th scope="col">Hotel </th>
                     <th scope="col">Hotel Photo </th>
-                    
-
-                    
-
                     <th scope="col">Price</th>
-                    
-                    
+                    <th scope="col">Location</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                   @php $i=1; @endphp
+                  @php $i=1; @endphp
                   @foreach($hotels as $hotel)
                   @php
                   $id=$hotel->id;
                   $name=$hotel->name;
                   $price=$hotel->price;
                   $photo=$hotel->photo;
+                  $location = $hotel->location->name;
                   @endphp
                   <tr>
                     <td>{{$i++}}</td>
                     <td scope="col">{{$name}} </td>          
                     <td  scope="col"><img src="{{asset($photo)}}" alt="hotel photo" class="img-fluid w-50"> </td>          
                       <td>{{$price}}Ks</td>
+                      <td>{{$location}}</td>
                       <td>
                       
                       <a href="{{route('backside.hotel.edit',$id)}}" class="table-icon linkIcon"><i class="icofont-settings-alt"></i></a>

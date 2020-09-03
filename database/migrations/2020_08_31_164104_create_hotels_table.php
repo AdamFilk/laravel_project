@@ -18,6 +18,8 @@ class CreateHotelsTable extends Migration
             $table->string('name');
             $table->string('price');
             $table->longText('photo');
+            $table->foreignId('locationid')->references('id')->on('locations')
+            ->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });
